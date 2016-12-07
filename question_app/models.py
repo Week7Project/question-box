@@ -7,19 +7,26 @@ class Poster(models.Model):
     score = models.IntegerField(default=0)
     user = models.OneToOneField(User)
 
+    def __str__(self):
+        return self.user.username
+
 
 class Tag(models.Model):
 
     name = models.CharField(max_length=25)
 
+    def __str__(self):
+        return self.name
 
 class Question(models.Model):
 
     title = models.CharField(max_length=255)
     text = models.CharField(max_length=255)
     tags = models.ManyToManyField(Tag)
-    poster = models.ForeignKey(Poster)
+    poster = models.ForeignKey(User)
 
+    def __str__(self):
+        return self.title
 
 class Answer(models.Model):
 

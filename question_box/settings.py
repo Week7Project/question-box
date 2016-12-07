@@ -93,7 +93,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 ACCOUNT_LOGOUT_REDIRECT_URL = "../question_app/login"
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/question_app/profile'
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 

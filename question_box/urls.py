@@ -7,6 +7,9 @@ from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
 router.register(r'question', views.QuestionViewSet)
+router.register(r'answer', views.AnswerViewSet)
+router.register(r'tag', views.TagViewSet)
+router.register(r'user', views.UserViewSet)
 
 
 urlpatterns = [

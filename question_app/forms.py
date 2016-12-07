@@ -13,7 +13,6 @@ class UserForm(forms.ModelForm):
 
 class PosterForm(forms.ModelForm):
 
-
    class Meta:
        model = Poster
        fields = ['score']

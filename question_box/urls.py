@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^index/$', TemplateView.as_view(template_name='index.html'), name= 'index'),
+    url(r'^question_page/$', TemplateView.as_view(template_name='question_page.html'), name= 'question_page'),
     url(r'^question_app/', include('question_app.urls')),
 ]

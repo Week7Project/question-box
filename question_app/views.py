@@ -40,3 +40,29 @@ def register(request):
            login(request, user)
            return HttpResponseRedirect('/main')
    return render(request, 'register.html', {'user_form': user_form, 'poster_form': poster_form})
+
+
+def profile(request):
+    return render(request, 'profile.html')
+
+
+def register(request):
+    if request.method == "GET":
+        user_form = UserForm()
+        poster_form = PosterForm()
+    elif request.method == "POST":
+        user_form = UserForm(request.POST)
+        poster_form = PosterForm(request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
+            poster = poster_form.save(commit=False)
+            poster.user = user
+            poster.save()
+            login(request, user)
+            password = user.password
+            user.set_password(password)
+            user.save()
+            user = authenticate(username=user.username, password=password)
+            login(request, user)
+            return HttpResponseRedirect('/question_app/profile')
+    return render(request, 'register.html', {'user_form': user_form, 'poster_form': poster_form})

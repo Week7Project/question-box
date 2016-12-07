@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Question, Tag
+from .models import Question, Tag, Answer
+from django.contrib.auth.models import User
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -13,4 +14,17 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ('url', 'title', 'text', 'tag', 'poster')
+        fields = ('url', 'title', 'text', 'tag', 'poster', 'answer')
+
+
+class AnswerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = ('url', 'text', 'poster', 'question', 'score')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('__all__')

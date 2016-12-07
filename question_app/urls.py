@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/question_app/login/'}, name='logout'),
     url('^', include('django.contrib.auth.urls')),
     url(r'^register/$', question_app.views.register, name='register'),
+    url(r'^profile/$', question_app.views.profile, name='profile'),
 ]

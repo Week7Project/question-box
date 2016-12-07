@@ -35,10 +35,12 @@ $("#get_questions").click(getQuestions)
 
 function questionPost(){
     console.log("here")
+    var user_div = $('#username_field').val()
+    console.log(user_div)
     var title = document.getElementById("title").value
     var text = document.getElementById("text").value
     var tag =document.getElementById("tag").value
-    var postdata = {'title': title, 'text': text, 'tag': tag, 'poster': 1}
+    var postdata = {'title': title, 'text': text, 'tag': tag, 'poster': user_div}
     jQuery.ajax({url:'/question/', data:postdata, type:'POST'
     }).done(function(){
         location = location

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ('name')
+        fields = ('__all__')
 
 
 class QuestionSerializer(serializers.ModelSerializer):

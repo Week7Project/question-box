@@ -1,13 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html>
-{% block content %}
-    <head>
-        <meta charset="utf-8">
-        <title>Profile Page</title>
-    </head>
-    <body>
-        <p>{{user.username}}</p>
-    </body>
-{% endblock %}
+    {% block content %}
+   <head>
+       <meta charset="utf-8">
+       <title>Handlebars</title>
+   </head>
+   <body>
+       <h1>YOU ARE {{user.username}}</h1>
+       <main>i'm here
+       {% verbatim %}
+       <script id="post-template" type="text/x-handlebars-template">
+            {{#each this}}
+            <article class="post-container">
+            <header id='main'>
+                {{displayLink this}}
+                <h1><a href="{{url}}">{{title}}</a></h1>
+            </header>
+            </article>
+            {{/each}}
+       </script>
+       {% endverbatim %}
+       </main>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+       <script type="text/javascript" src="{% static 'question_app/js/profile.js' %}"></script>
+        {% endblock %}
+   </body>
 </html>

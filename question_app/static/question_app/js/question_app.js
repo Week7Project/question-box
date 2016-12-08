@@ -35,7 +35,7 @@ $("#get_questions").click(getQuestions)
 
 function questionPost(){
     var user_div = $('#username_field').val()
-    var title = document.getElementById("title").value
+    var title = $("#title").val()
     var text = document.getElementById("text").value
     var tag =document.getElementById("tag").value
     var postdata = {'title': title, 'text': text, 'tag': tag, 'poster': user_div}
@@ -49,10 +49,9 @@ function questionPost(){
 function getQuestions() {
     $("#info").html("")
     var $table = $("<p>")
-    for (var j = 1; j < 2; j++){
+    for (var j = 1; j < 5; j++){
         $.ajax('/question/' +j).done(function (stuff){
         var que = stuff
-        console.log(stuff['title'])
         $table.html($table.html() + "<tr><td>" + stuff['title'] + "<br>")
         $('#info').append($table)
         })
@@ -64,9 +63,10 @@ getQuestions()
 
 function detQuestionIdByTitle(title){
     console.log("here")
-    for (var j = 1; j < 2; j++){
+    for (var j = 1; j < 5; j++){
         $.ajax('/question/' +j).done(function (stuff){
         console.log(stuff['title'])
+        console.log(title)
         if(title === stuff['title']){
             console.log(stuff)
             return stuff['id']
@@ -75,16 +75,17 @@ function detQuestionIdByTitle(title){
     }
 }
 
+
 function answerPost(){
-    console.log("overhere")
     var user_div = $('#username_field').val()
     console.log(user_div)
-    question_title = $('#info').val()
+    question_title = document.getElementById('#info').innerHTML
+    console.log($('#info'))
     question_id = detQuestionIdByTitle(question_title)
     console.log(question_id)
     var answer = document.getElementById("answerText").value
-    var postdata = {'text': answer, 'score': 0, 'poster_id': user_div, 'question_id': question_id}
-    jQuery.ajax({url:'/question/', data:postdata, type:'POST'
+    var postdata = {'text': answer, 'score': 0, 'poster_id': 2, 'question_id': question_id}
+    jQuery.ajax({url:'/answer/', data:postdata, type:'POST'
     }).done(function(){
         location = location
     })

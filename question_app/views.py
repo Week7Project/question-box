@@ -7,6 +7,7 @@ from .serializers import QuestionSerializer, AnswerSerializer, TagSerializer, Us
 from .forms import UserForm, PosterForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from question_app import models
 
 #Create your views here.
 
@@ -61,3 +62,8 @@ def register(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+
+def question_detail(request, var):
+    question = models.Question.objects.get(pk=var)
+    return render(request, 'question.html', {'question': question})

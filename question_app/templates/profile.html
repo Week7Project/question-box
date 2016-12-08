@@ -1,7 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html>
+<<<<<<< HEAD
+{% block content %}
+    <head>
+        <meta charset="utf-8">
+        <title>Profile Page</title>
+    </head>
+    <body>
+        <p>{{user.username}}</p>
+        <input id="username_field" name='userId' value='{{ user.id }}'>
+        <br>
+        <button id="getQuestionsForUser">Get questions</button>
+
+        <div id="info"></div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{% static 'question_app/js/question_app.js' %}"></script>
+    </body>
+{% endblock %}
+=======
     {% block content %}
    <head>
        <meta charset="utf-8">
@@ -27,4 +48,5 @@
        <script type="text/javascript" src="{% static 'question_app/js/profile.js' %}"></script>
     {% endblock %}
    </body>
+>>>>>>> 508bfdd6b5d591abedaf82045ec9995f06c64139
 </html>

@@ -6,15 +6,20 @@
         <title>Question</title>
     </head>
     <body>
-        Current user:
-        <input id="username_field" name='userId' value='{{ user.username }}'>
+        Current user: {{ user.username }}
+        <input id="userId_field" type='hidden' name='userId' value='{{ user.id }}'>
+        <input id="questionId_field" type='hidden' name='questionIdId' value='{{ question.id }}'>
         <br>
-        <button id="get_question_details">Get question</button>
-
          <h2>{{question.title}}</h2>
          <h3>{{question.text}}</h3>
-
         <div id="info"></div>
+
+        <br>
+        <br>
+        <div id="answer"></div>
+        <br>
+        <br>
+        <br>
 
         <form>
           <p>Your answer</p>

@@ -84,17 +84,19 @@ function detQuestionIdByTitle(title){
 
 
 function answerPost(){
-    var user_div = $('#username_field').val()
+    var $table = $("<p>")
+    var user_div = $('#userId_field').val()
     console.log(user_div)
-    question_title = document.getElementById('#info').innerHTML
-    console.log($('#info'))
-    question_id = detQuestionIdByTitle(question_title)
+    question_id = $('#questionId_field').val()
     console.log(question_id)
-    var answer = document.getElementById("answerText").value
-    var postdata = {'text': answer, 'score': 0, 'poster_id': 1, 'question_id': 1}
+    var answer = $('#answerText').val()
+    var postdata = {'text': answer, 'score': 0, 'poster': user_div, 'question': question_id}
     jQuery.ajax({url:'/api/answer/', data:postdata, type:'POST'
     }).done(function(){
-        location = location
+        // location = location
+        $table.html($table.html() + "<tr><td>" + answer + "<br>")
+        console.log(answer)
+        $('#answer').append($table)
     })
 }
 
@@ -102,19 +104,52 @@ function answerPost(){
 function getQuestionsForUser() {
     $("#info").html("")
     var $table = $("<p>")
-    for (var j = 1; j < 10; j++){
-        $.ajax('/api/question/' +j).done(function (stuff){
-        var que = stuff
-        if(que['poster'] == $('#username_field').val()){
-            console.log(que)
-            $table.html($table.html() + "<tr><td>" + stuff['title'] + "<br>")
-        $('#info').append($table)
-        }
-        })
+    $.ajax('/api/question/').done(function (stuff){
+    var que = stuff
+    if(que['poster'] == $('#username_field').val()){
+        console.log(que)
+        $table.html($table.html() + "<tr><td>" + stuff['title'] + "<br>")
+    // $('#info').append($table)
+    $('main').append(html);
+     console.log($('main'))
     }
+    })
 }
 
 
+function list_questions(){
+   $.getJSON( "/api/question/", function ( questions ) {
+       console.log("here")
+       var source = $('#post-template').html();
+       var template = Handlebars.compile(source);
+       var html = template(questions.results);
+       $('main').append(html);
+       console.log($('main'))
+   })
+}
+//
+// var user_div = $('#username_field').val()
+// var context = getQuestionsForUser(user_div)
+
+
+function profileOnload() {
+
+    var user_div = $('#username_field').val()
+    var context1 = getQuestionsForUser(user_div)
+    var context = list_questions()
+    console.log(context1)
+    console.log(context)
+    Handlebars.registerHelper('displayLink', function(id, title, url) {
+     title = Handlebars.Utils.escapeExpression(title);
+     id  = Handlebars.Utils.escapeExpression(id);
+     datatype = this.url.split('/');
+     console.log(this.poster)
+     datatype = datatype[datatype.length-3]
+     if(user_div == this.poster){
+      return '<a href="' + '/' + datatype + '/' + this.id + '">' + this.title + '</a>';
+      }
+    });
+}
 
 
 $("#getQuestionsForUser").click(getQuestionsForUser)

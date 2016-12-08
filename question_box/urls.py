@@ -13,19 +13,10 @@ router.register(r'api/user', views.UserViewSet)
 
 
 urlpatterns = [
-<<<<<<< HEAD
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^index/$', TemplateView.as_view(template_name='index.html'), name= 'index'),
     url(r'^question_app/', include('question_app.urls')),
     url(r'^question/([0-9]+)', views.question_detail, name="question"),
-=======
-   url(r'^admin/', admin.site.urls),
-   url(r'^', include(router.urls)),
-   url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-   url(r'^index/$', TemplateView.as_view(template_name='index.html'), name= 'index'),
-   url(r'^question_app/', include('question_app.urls')),
-   url(r'^question/([0-9]+)', TemplateView.as_view(template_name='question.html'), name= 'question'),
->>>>>>> 508bfdd6b5d591abedaf82045ec9995f06c64139
 ]

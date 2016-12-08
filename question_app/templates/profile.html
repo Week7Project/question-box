@@ -2,6 +2,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
     {% block content %}
    <head>
        <meta charset="utf-8">
@@ -27,4 +28,32 @@
        <script type="text/javascript" src="{% static 'question_app/js/profile.js' %}"></script>
     {% endblock %}
    </body>
+=======
+   {% block content %}
+  <head>
+      <meta charset="utf-8">
+      <title>Handlebars</title>
+  </head>
+  <body onload="profileOnload()">
+      <h1>YOU ARE {{user.username}}</h1>
+      <input id="username_field" type='hidden' name='userId' value='{{ user.id }}'>
+      <main>i'm here
+      {% verbatim %}
+      <script id="post-template" type="text/x-handlebars-template">
+           {{#each this}}
+           <article class="post-container">
+           <header id='main'>
+               {{{displayLink this}}}
+           </header>
+           </article>
+           {{/each}}
+      </script>
+      {% endverbatim %}
+      </main>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script type="text/javascript" src="{% static 'question_app/js/question_app.js' %}"></script>
+   {% endblock %}
+  </body>
+>>>>>>> c9669baeb3bece11e76128416e080cd3a4fd1b7e
 </html>

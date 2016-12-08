@@ -13,14 +13,14 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ('url', 'title', 'text', 'tags', 'poster', 'question_created', 'question_modified')
+        fields = ('url', 'title', 'text', 'tags', 'poster', 'question_created', 'question_modified', 'id')
 
 
 class AnswerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ('url', 'text', 'poster', 'question', 'score', 'answer_created', 'answer_modified')
+        fields = ('url', 'text', 'poster', 'question', 'score', 'answer_created', 'answer_modified', 'id')
 
 
 class UserSerializer(serializers.ModelSerializer):

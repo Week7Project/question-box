@@ -6,10 +6,10 @@ from django.views.generic import TemplateView
 
 
 router = routers.DefaultRouter()
-router.register(r'question', views.QuestionViewSet)
-router.register(r'answer', views.AnswerViewSet)
-router.register(r'tag', views.TagViewSet)
-router.register(r'user', views.UserViewSet)
+router.register(r'api/question', views.QuestionViewSet)
+router.register(r'api/answer', views.AnswerViewSet)
+router.register(r'api/tag', views.TagViewSet)
+router.register(r'api/user', views.UserViewSet)
 
 
 urlpatterns = [
@@ -17,6 +17,6 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^index/$', TemplateView.as_view(template_name='index.html'), name= 'index'),
-    url(r'^question_page/$', TemplateView.as_view(template_name='question_page.html'), name= 'question_page'),
     url(r'^question_app/', include('question_app.urls')),
+    url(r'^question/([0-9]+)', views.question_detail, name="question"),
 ]

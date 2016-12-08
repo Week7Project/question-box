@@ -9,8 +9,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from question_app import models
 
-#Create your views here.
-
 
 class QuestionViewSet(viewsets.ModelViewSet):
 
@@ -56,7 +54,7 @@ def register(request):
            user.save()
            user = authenticate(username=user.username, password=password)
            login(request, user)
-           return HttpResponseRedirect('/main')
+           return HttpResponseRedirect('/question_app/profile')
    return render(request, 'register.html', {'user_form': user_form, 'poster_form': poster_form})
 
 

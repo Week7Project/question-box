@@ -9,9 +9,10 @@ function list_questions(){
 }
 var context = list_questions()
 
-Handlebars.registerHelper('displayLink', function(id, title) {
+Handlebars.registerHelper('displayLink', function(id, title, url) {
   title = Handlebars.Utils.escapeExpression(title);
   id  = Handlebars.Utils.escapeExpression(id);
-  console.log(this.id)
-    return '<a href="' + '/question/' + this.id + '">' + this.title + '</a>';
+  datatype = this.url.split('/');
+  datatype = datatype[datatype.length-3]
+    return '<a href="' + '/' + datatype + '/' + this.id + '">' + this.title + '</a>';
 });

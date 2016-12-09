@@ -149,12 +149,6 @@ function voteUp(){
     console.log("+1")
 }
 
-<div class="vote">
-        <input type="hidden" name="_id_" value="32065678">
-        <a class="vote-up-off" title="This answer is useful">up vote</a>
-        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
-        <a class="vote-down-off" title="This answer is not useful">down vote</a>
-</div>
 
 
 $("#getQuestionsForUser").click(getQuestionsForUser)

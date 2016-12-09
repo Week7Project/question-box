@@ -155,5 +155,4 @@ function profileOnload() {
 $("#getQuestionsForUser").click(getQuestionsForUser)
 $("#get_question_details").click(getQuestionDetail)
 $("#post_answer").click(answerPost)
-$("#post_question").click(questionPost)
 $("#get_questions").click(getQuestions)

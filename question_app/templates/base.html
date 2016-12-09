@@ -8,6 +8,28 @@
         <title>Question Box</title>
     </head>
     <body>
+        <div class="modal fade bd-example-modal-sm" id = "modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="form-group">
+                    <h3>Add Question</h3>
+                    <input id="username_field" type='hidden' name='userId' value='{{ user.id }}'>
+                    <form>
+                      Title:<br>
+                      <input type="text" id="title">
+                      <br>
+                      Text:<br>
+                      <input type="text" id="text">
+                      <br>
+                      Tag:<br>
+                      <input type="text" id="tag">
+                      <br>
+                      <button id="post_question">Post</button>
+                    </form>
+        </div>
+        </div>
+        </div>
+        </div>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -21,6 +43,7 @@
                 <div class="collapse navbar-collapse" id = 'navbardropdown'>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{% url 'profile' %}">{{user.username}}</a></li>
+                        <li><button id="post_question" data-toggle="modal" data-target=".bd-example-modal-sm">Ask A Question</button></li>
                         <li><a href="/question_app/register">Create User</a></li>
                             {% if user.is_authenticated %}
                         <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -40,5 +63,6 @@
   <!-- complete JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'question_app/js/base.js' %}"></script>
   </body>
 </html>

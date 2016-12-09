@@ -46,13 +46,11 @@ function questionPost(){
 function getQuestions() {
     $("#info").html("")
     var $table = $("<p>")
-    for (var j = 1; j < 5; j++){
-        $.ajax('/api/question/' +j).done(function (stuff){
-        var que = stuff
-        $table.html($table.html() + "<tr><td>" + stuff['title'] + "<br>")
-        $('#info').append($table)
-        })
-    }
+    $.ajax('/api/question/' +j).done(function (stuff){
+    var que = stuff
+    $table.html($table.html() + "<tr><td>" + stuff['title'] + "<br>")
+    $('#info').append($table)
+    })
 }
 
 // getQuestions()
@@ -76,16 +74,9 @@ function answerPost(){
     var postdata = {'text': answer, 'score': 0, 'poster': user_div, 'question': question_id}
     jQuery.ajax({url:'/api/answer/', data:postdata, type:'POST'
     }).done(function(){
-        // answerField = '<div>' + answer + '</div>'
-        // console.log(answerField)
-        // $('#answer').html(answerField)
         location = location
     })
     getAnswers()
-    // answerField = '<div>' + answer + '</div>'
-    // console.log(answerField)
-    // $('#answer').html(answerField)
-
 }
 
 
@@ -121,19 +112,21 @@ function list_questions(){
 function getAnswers() {
     $("#answer").html("")
     var $table = $("<p>")
-    for (var j = 1; j < 30; j++){
-        $.ajax('/api/answer/' +j).done(function (stuff){
-        var que = stuff
-        console.log(que)
-        $table.html($table.html() + "<tr><td>" + stuff['text'] + "<br>")
-        $('#answer').append($table)
-        })
+    $.ajax('/api/answer/').done(function (stuff){
+    var answer = stuff.results
+    console.log(answer.length)
+    for (var j = 0; j < answer.length; j++){
+        console.log(answer[j])
+        if(answer[j]['question'] == $('#questionId_field').val()){
+            $table.html($table.html() + "<tr><td>" + answer[j]['text'] + "<br>")
+            $('#answer').append($table)
+        }
     }
+    })
 }
 
 
 function profileOnload() {
-
     var user_div = $('#username_field').val()
     var context1 = getQuestionsForUser(user_div)
     var context = list_questions()
@@ -152,9 +145,22 @@ function profileOnload() {
 }
 
 
+function voteUp(){
+    console.log("+1")
+}
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="32065678">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+</div>
+
+
 $("#getQuestionsForUser").click(getQuestionsForUser)
 $("#get_question_details").click(getQuestionDetail)
 $("#post_answer").click(answerPost)
 $("#post_question").click(questionPost)
 $("#get_questions").click(getQuestions)
 $("#get_answers").click(getAnswers)
+$("#votebuttonUp").click(voteUp)

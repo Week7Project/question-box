@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <title>Question</title>
     </head>
-    <body>
+    <body onload="getAnswers()">
         Current user: {{ user.username }}
         <input id="userId_field" type='hidden' name='userId' value='{{ user.id }}'>
         <input id="questionId_field" type='hidden' name='questionIdId' value='{{ question.id }}'>
@@ -16,7 +16,6 @@
 
         <br>
         <br>
-        <button id="get_answers">Get answers</button>
         <div id="answer"></div>
         <br>
         <br>

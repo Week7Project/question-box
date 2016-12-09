@@ -68,36 +68,24 @@ function getQuestionDetail(question_id) {
     })
 }
 
-function detQuestionIdByTitle(title){
-    console.log("here")
-    for (var j = 1; j < 5; j++){
-        $.ajax('/api/question/' +j).done(function (stuff){
-        console.log(stuff['title'])
-        console.log(title)
-        if(title === stuff['title']){
-            console.log(stuff)
-            return stuff['id']
-        }
-        })
-    }
-}
-
 
 function answerPost(){
-    var $table = $("<p>")
     var user_div = $('#userId_field').val()
-    console.log(user_div)
     question_id = $('#questionId_field').val()
-    console.log(question_id)
     var answer = $('#answerText').val()
     var postdata = {'text': answer, 'score': 0, 'poster': user_div, 'question': question_id}
     jQuery.ajax({url:'/api/answer/', data:postdata, type:'POST'
     }).done(function(){
-        // location = location
-        $table.html($table.html() + "<tr><td>" + answer + "<br>")
-        console.log(answer)
-        $('#answer').append($table)
+        // answerField = '<div>' + answer + '</div>'
+        // console.log(answerField)
+        // $('#answer').html(answerField)
+        location = location
     })
+    getAnswers()
+    // answerField = '<div>' + answer + '</div>'
+    // console.log(answerField)
+    // $('#answer').html(answerField)
+
 }
 
 
@@ -117,6 +105,7 @@ function getQuestionsForUser() {
 }
 
 
+
 function list_questions(){
    $.getJSON( "/api/question/", function ( questions ) {
        console.log("here")
@@ -127,9 +116,20 @@ function list_questions(){
        console.log($('main'))
    })
 }
-//
-// var user_div = $('#username_field').val()
-// var context = getQuestionsForUser(user_div)
+
+
+function getAnswers() {
+    $("#answer").html("")
+    var $table = $("<p>")
+    for (var j = 1; j < 30; j++){
+        $.ajax('/api/answer/' +j).done(function (stuff){
+        var que = stuff
+        console.log(que)
+        $table.html($table.html() + "<tr><td>" + stuff['text'] + "<br>")
+        $('#answer').append($table)
+        })
+    }
+}
 
 
 function profileOnload() {
@@ -157,3 +157,4 @@ $("#get_question_details").click(getQuestionDetail)
 $("#post_answer").click(answerPost)
 $("#post_question").click(questionPost)
 $("#get_questions").click(getQuestions)
+$("#get_answers").click(getAnswers)

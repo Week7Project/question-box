@@ -1,0 +1,10 @@
+#questionbox{
+    border: double;
+    border-color: black;
+    border-width: thin;
+    background-color: darkgrey;
+}
+
+#votebutton{
+    pointer-events: none;
+}

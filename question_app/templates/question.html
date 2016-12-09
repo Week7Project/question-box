@@ -5,14 +5,14 @@
         <meta charset="utf-8">
         <title>Question</title>
     </head>
-    <body>
+    <body onload="getAnswers()">
         Current user: {{ user.username }}
         <input id="userId_field" type='hidden' name='userId' value='{{ user.id }}'>
         <input id="questionId_field" type='hidden' name='questionIdId' value='{{ question.id }}'>
         <br>
          <h2>{{question.title}}</h2>
          <h3>{{question.text}}</h3>
-        <div id="info"></div>
+        <div id="questionField"></div>
 
         <br>
         <br>

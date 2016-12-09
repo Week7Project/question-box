@@ -15,15 +15,18 @@ class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all().order_by('title')
     serializer_class = QuestionSerializer
 
+
 class AnswerViewSet(viewsets.ModelViewSet):
 
     queryset = Answer.objects.all().order_by('id')
     serializer_class = AnswerSerializer
 
+
 class TagViewSet(viewsets.ModelViewSet):
 
     queryset = Tag.objects.all().order_by('name')
     serializer_class = TagSerializer
+
 
 class UserViewSet(viewsets.ModelViewSet):
 
@@ -31,31 +34,35 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-
 def index(request):
     return HttpResponse("Hello, world. You're at the QuestionApp index.")
 
 
+def main(request):
+    return render(request, 'main.html')
+
+
 def register(request):
-   if request.method == "GET":
-       user_form = UserForm()
-       poster_form = PosterForm()
-   elif request.method == "POST":
-       user_form = UserForm(request.POST)
-       poster_form = PosterForm(request.POST)
-       if user_form.is_valid():
-           user = user_form.save()
-           poster = poster_form.save(commit=False)
-           poster.user = user
-           poster.save()
-           login(request, user)
-           password = user.password
-           user.set_password(password)
-           user.save()
-           user = authenticate(username=user.username, password=password)
-           login(request, user)
-           return HttpResponseRedirect('/question_app/profile')
-   return render(request, 'register.html', {'user_form': user_form, 'poster_form': poster_form})
+    if request.method == "GET":
+        user_form = UserForm()
+        poster_form = PosterForm()
+    elif request.method == "POST":
+        user_form = UserForm(request.POST)
+        poster_form = PosterForm(request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
+            poster = poster_form.save(commit=False)
+            poster.user = user
+            poster.save()
+            login(request, user)
+            password = user.password
+            user.set_password(password)
+            user.save()
+            user = authenticate(username=user.username, password=password)
+            login(request, user)
+            return HttpResponseRedirect('/question_app/profile')
+    return render(request, 'register.html', {'user_form': user_form,
+                                             'poster_form': poster_form})
 
 
 def profile(request):

@@ -13,7 +13,7 @@ SECRET_KEY = '3=@xd&51&$z8e7m*##l9%6v$j-7ol@lu5-maz^uon#g)#c8a72'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', ' calm-river-26563.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = ['calm-river-26563.herokuapp.com']
 
 
 # Application definition

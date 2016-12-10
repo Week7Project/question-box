@@ -18,8 +18,13 @@
                  <div id='questionbox' class="container">
                  <h4>{{{displayLink this}}}</h4>
                  <h5>{{this.text}}</h5>
-                 <span id='votebuttonUp' class="glyphicon glyphicon-arrow-up"></span>
+                 <div onclick=myHandler() id={{{this.id}}}>&rarr; Click Here! &larr;</div>
+                 <button>
+                 <span id={{{this.id}}} onClick=taskPatch() class="glyphicon glyphicon-arrow-up"></span>
+             </button>
+             <button>
                  <span id='votebuttonDown' class="glyphicon glyphicon-arrow-down"></span>
+             </button>
                  </div>
                  <br>
              </header>

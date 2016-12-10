@@ -27,14 +27,42 @@ $.ajaxSetup({
     }
 });
 
+function dropDownTags(){
+    $.ajax("/api/tag/").done(function(obj) {
+        $("#dropDownTags").html("")
+        tags = (obj.results)
+        for (var j = 0; j < tags.length; j++){
+            console.log(tags)
+            $("#dropDownTags").append("<option>" + tags[j]['name'] + "</option>");
+        }
+    });
+}
+// dropdown[dropdown.length] = new Option(tasks[i]['title'], tasks[i]['url']);
+// var x = document.createElement("OPTION")
+//    x.setAttribute("title", "value")
+
+function getTagId(tagName){
+    $.ajax("/api/tag/").done(function(obj) {
+        tags = (obj.results)
+        for (var j = 0; j < tags.length; j++){
+            if(tags[j]['name'] == tagName){
+                result =  tags[j]['id']
+                console.log(result)
+                return result
+            }
+        }
+    });
+}
+
 
 function questionPost(){
     var poster = $('#username_field').val()
-    console.log(poster)
     var title = $("#title").val()
     var text = $("#text").val()
-    var tag =$("#tag").val()
-    var postdata = {'title':title, 'text':text, 'tags':tag, 'poster':poster}
+    var tag = $("#dropDownTags").val()
+    var tagId = getTagId(tag)
+    console.log(tagId)
+    var postdata = {'title':title, 'text':text, 'tags':tagId, 'poster':poster}
     console.log(postdata)
     $.ajax({url:'/api/question/', data:postdata, type:'POST'
     }).done(function(){
@@ -52,6 +80,7 @@ function getQuestions() {
     $('#info').append($table)
     })
 }
+
 
 // getQuestions()
 function getQuestionDetail(question_id) {
@@ -150,6 +179,7 @@ function voteUp(){
 }
 
 
+$("#dropDownTags").click(dropDownTags)
 $("#getQuestionsForUser").click(getQuestionsForUser)
 $("#get_question_details").click(getQuestionDetail)
 $("#post_answer").click(answerPost)

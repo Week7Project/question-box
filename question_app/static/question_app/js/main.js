@@ -24,9 +24,7 @@ function list_questions(){
 }
 
 list_questions()
-function myHandler(){
-    alert(myHandler.caller.arguments[0].target.id)
-}
+
 
 Handlebars.registerHelper('displayLink', function(id, title, url, text) {
      title = Handlebars.Utils.escapeExpression(title);

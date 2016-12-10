@@ -6,6 +6,7 @@
         <meta charset="utf-8">
         <title>Question</title>
     </head>
+    {% block content %}
     <body onload="getAnswers()">
         Current user: {{ user.username }}
         <input id="userId_field" type='hidden' name='userId' value='{{ user.id }}'>
@@ -17,7 +18,28 @@
 
         <br>
         <br>
-        <div id="answer"></div>
+        <div id='answerbox'>
+        {% verbatim %}
+        <script id="post-template" type="text/x-handlebars-template">
+             {{#each this}}
+             <article class="post-container">
+             <header>
+                 <div class="container">
+                 <h5>{{this.text}}</h5>
+                 <button>
+                 <span id={{{this.id}}} onClick=taskPatch() class="glyphicon glyphicon-arrow-up"></span>
+                 </button>
+                 <button>
+                 <span id='votebuttonDown' class="glyphicon glyphicon-arrow-down"></span>
+                 </button>
+                 </div>
+                 <br>
+             </header>
+             </article>
+             {{/each}}
+        </script>
+        {% endverbatim %}
+    </div>
         <br>
         <br>
         <br>
@@ -31,8 +53,10 @@
 
 
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="{% static 'question_app/js/question_app.js' %}"></script>
+        <script type="text/javascript" src="{% static 'question_app/js/question.js' %}"></script>
     </body>
+    {% endblock %}
 </html>

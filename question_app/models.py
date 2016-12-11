@@ -27,7 +27,6 @@ class Question(models.Model):
     question_created = models.DateTimeField(auto_now_add=True)
     question_modified = models.DateTimeField(auto_now=True)
 
-
     def __str__(self):
         return self.title
 

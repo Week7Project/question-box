@@ -67,12 +67,14 @@ function questionPost(){
             }
         }
         var tag = $("#tagId").val()
-        var postdata = {'title':title, 'text':text, 'tags':tagId, 'poster':poster}
+        var postdata = {'title':title, 'text':text, 'tags':tag, 'poster':poster}
+        console.log(postdata)
+        console.log(poster)
         $.ajax({url:'/api/question/', data:postdata, type:'POST'
         }).done(function(){
             location = location
         })
-    });
+    })
 }
 
 

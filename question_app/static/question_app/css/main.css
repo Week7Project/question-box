@@ -8,3 +8,7 @@
 #votebutton{
     pointer-events: none;
 }
+
+#poster{
+    text-align: right;
+}

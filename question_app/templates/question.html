@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 {% load static %}
 <html>
@@ -5,6 +6,7 @@
         <meta charset="utf-8">
         <title>Question</title>
     </head>
+    {% block content %}
     <body onload="getAnswers()">
         Current user: {{ user.username }}
         <input id="userId_field" type='hidden' name='userId' value='{{ user.id }}'>
@@ -34,4 +36,5 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{% static 'question_app/js/question_app.js' %}"></script>
     </body>
+    {% endblock %}
 </html>

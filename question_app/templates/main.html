@@ -18,8 +18,15 @@
                  <div id='questionbox' class="container">
                  <h4>{{{displayLink this}}}</h4>
                  <h5>{{this.text}}</h5>
-                 <span id='votebuttonUp' class="glyphicon glyphicon-arrow-up"></span>
+                 <div id='thisTagName'>Tags: </div>
+                 <div onclick=myHandler() id={{{this.id}}}>&rarr; Click Here! &larr;</div>
+                 <button>
+                 <span id={{{this.id}}} onClick=taskPatch() class="glyphicon glyphicon-arrow-up"></span>
+             </button>
+             <button>
                  <span id='votebuttonDown' class="glyphicon glyphicon-arrow-down"></span>
+             </button>
+                <div id='poster' >posted: {{this.question_created}} {{this.poster}} user</div>
                  </div>
                  <br>
              </header>
@@ -28,6 +35,7 @@
         </script>
         {% endverbatim %}
         </main>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'question_app/js/main.js' %}"></script>

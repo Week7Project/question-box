@@ -17,6 +17,12 @@
                  <div id='questionbox' class="container">
                  <h4>{{{displayLink this}}}</h4>
                  <h5>{{this.text}}</h5>
+
+                 {{#each this.tags as |tag|}}
+                 <div id='thisTagName'>Tags: {{tag.name}}</div>
+                 {{/each}}
+                 <div onclick=myHandler() id={{{this.id}}}>Answers: {{this.score}}</div>
+                <div id='poster' >posted: {{{ this.question_created }}} {{{ this.poster.username }}}</div>
                  </div>
                  <br>
              </header>
@@ -25,6 +31,7 @@
         </script>
         {% endverbatim %}
         </main>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'question_app/js/main.js' %}"></script>

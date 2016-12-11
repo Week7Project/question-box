@@ -13,7 +13,8 @@ SECRET_KEY = '3=@xd&51&$z8e7m*##l9%6v$j-7ol@lu5-maz^uon#g)#c8a72'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'calm-river-26563.herokuapp.com']
+
+ALLOWED_HOSTS = ['0.0.0.0', 'sleepy-peak-67543.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -104,9 +105,15 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
+DATETIME_FORMAT = 'Y-m-d H:i:sO'
+
+DATE_FORMAT = 'Y-m-d'
+
+DATE_INPUT_FORMATS = '%d-%m-%Y'
+
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 

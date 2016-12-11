@@ -2,5 +2,17 @@
     border: double;
     border-color: black;
     border-width: thin;
-    background-color: darkgrey;
+
+}
+
+body{
+    background-color: #FFFAFA;
+}
+
+#votebutton{
+    pointer-events: none;
+}
+
+#poster{
+    text-align: right;
 }

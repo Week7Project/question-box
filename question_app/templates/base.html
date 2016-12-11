@@ -22,10 +22,13 @@
                       <input type="text" id="text">
                       <br>
                       Tag:<br>
-                      <input type="text" id="tag">
+                      <select name="drop_down" id="dropDownTags">
+                        <option value="None" selected="Selected">Select tag</option>
+                      </select>
                       <br>
                       <button id="post_question">Post</button>
                     </form>
+
         </div>
         </div>
         </div>
@@ -38,7 +41,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                        <a class="navbar-brand" href="/question_app/main">Main Page</a>
+                        <a href="/question_app/main" ><img src="http://icons.iconarchive.com/icons/iconexpo/speech-balloon-orange/256/speech-balloon-orange-q-icon.png" style="width:10%"></a>
                 </div>
                 <div class="collapse navbar-collapse" id = 'navbardropdown'>
                     <ul class="nav navbar-nav navbar-right">
@@ -51,10 +54,16 @@
                         <li><a href="{% url 'login' %}">Login</a></li>
                             {% endif %}
                         </button>
+                        <li>
+                            <form id='searchForm'>
+                                <input id="search" type="text" name="search" placeholder="Search..">
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <input id="tagId" type='hidden' value="replace-me" />
         {%block content%}
         {%endblock%}
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -63,6 +72,6 @@
   <!-- complete JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="{% static 'question_app/js/base.js' %}"></script>
+  <script type="text/javascript" src="{% static 'question_app/js/question_app.js' %}"></script>
   </body>
 </html>

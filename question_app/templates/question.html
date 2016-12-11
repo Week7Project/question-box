@@ -7,6 +7,8 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="{% static 'question_app/css/question.css' %}">
         <title>Question</title>
+        {% block content %}
+        <link rel="stylesheet" href="{% static 'question_app/css/question.css' %}">
     </head>
             <article class="post-container">
                <div class="row">
@@ -60,4 +62,5 @@
         <script type="text/javascript" src="{% static 'question_app/js/question.js' %}"></script>
     </body>
         {% endblock %}
+
 </html>

@@ -14,18 +14,9 @@
         <script id="post-template" type="text/x-handlebars-template">
              {{#each this}}
              <article class="post-container">
-             <header id='main'>
-                 <p> this is a thing </p>
                  <div id='questionbox' class="container">
                  <h4>{{{displayLink this}}}</h4>
                  <h5>{{this.text}}</h5>
-                 <div onclick=myHandler() id={{{this.id}}}>&rarr; Click Here! &larr;</div>
-                 <button>
-                 <span id={{{this.id}}} onClick=taskPatch() class="glyphicon glyphicon-arrow-up"></span>
-             </button>
-             <button>
-                 <span id='votebuttonDown' class="glyphicon glyphicon-arrow-down"></span>
-             </button>
                  </div>
                  <br>
              </header>

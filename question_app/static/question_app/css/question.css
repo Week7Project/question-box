@@ -1,0 +1,19 @@
+#answerbox{
+    border-radius: 10px;
+    border: double;
+    border-color: black;
+    border-width: thin;
+    background-color: lightgrey;
+}
+
+#votebutton{
+    pointer-events: none;
+}
+
+#questionbox{
+    border-radius: 10px;
+    border: double;
+    border-color: black;
+    border-width: thin;
+    background-color: darkgrey;
+}

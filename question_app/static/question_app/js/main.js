@@ -19,6 +19,7 @@ function list_questions(){
        var source = $('#post-template').html();
        var template = Handlebars.compile(source);
        var html = template(questions.results);
+       console.log(questions.results)
        $('main').append(html);
    })
 }

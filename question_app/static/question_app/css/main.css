@@ -4,7 +4,3 @@
     border-width: thin;
     background-color: darkgrey;
 }
-
-#votebutton{
-    pointer-events: none;
-}

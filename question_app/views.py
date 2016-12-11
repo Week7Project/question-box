@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from .models import Question, Answer, Tag
 from .serializers import QuestionSerializer, AnswerSerializer, TagSerializer, UserSerializer
 from .forms import UserForm, PosterForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from question_app import models
+import sys, django_filters, json, io
+
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
@@ -20,7 +22,6 @@ class AnswerViewSet(viewsets.ModelViewSet):
 
     queryset = Answer.objects.all().order_by('id')
     serializer_class = AnswerSerializer
-
 
 class TagViewSet(viewsets.ModelViewSet):
 

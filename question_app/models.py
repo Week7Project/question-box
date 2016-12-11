@@ -35,7 +35,7 @@ class Question(models.Model):
 class Answer(models.Model):
     text = models.CharField(max_length=255)
     poster = models.ForeignKey(Poster)
-    question = models.ForeignKey(Question)
+    question = models.ForeignKey(Question, related_name='answer')
     score = models.IntegerField(default=0)
     answer_created = models.DateTimeField(auto_now_add=True)
     answer_modified = models.DateTimeField(auto_now=True)

@@ -41,4 +41,5 @@ function questionPost(){
     })
 }
 
+
 $("#post_question").click(questionPost)

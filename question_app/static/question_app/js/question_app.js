@@ -28,7 +28,7 @@ $.ajaxSetup({
         }
     }
 });
-// 
+//
 //
 // function getTagName(){
 //     tagId = (document.getElementById('thisTagName').innerHTML)
@@ -56,8 +56,10 @@ function questionPost(){
     var title = $("#title").val()
     var text = $("#text").val()
     tagName = $("#dropDownTags").val()
+    console.log("post it")
     $.ajax("/api/tag/").done(function(obj) {
         tags = (obj.results)
+        console.log(tags.length)
         for (var j = 0; j < tags.length; j++){
             if(tags[j]['name'] == tagName){
                 tagId =  tags[j]['id']
@@ -66,7 +68,6 @@ function questionPost(){
         }
         var tag = $("#tagId").val()
         var postdata = {'title':title, 'text':text, 'tags':tagId, 'poster':poster}
-        console.log(postdata)
         $.ajax({url:'/api/question/', data:postdata, type:'POST'
         }).done(function(){
             location = location
@@ -99,15 +100,16 @@ function getQuestionDetail(question_id) {
 
 
 function answerPost(){
+    console.log("answer func")
     var user_div = $('#userId_field').val()
     question_id = $('#questionId_field').val()
     var answer = $('#answerText').val()
     var postdata = {'text': answer, 'score': 0, 'poster': user_div, 'question': question_id}
     jQuery.ajax({url:'/api/answer/', data:postdata, type:'POST'
     }).done(function(){
-        location = location
+        console.log(postdata)
     })
-    getAnswers()
+    // getAnswers()
 }
 
 
@@ -144,6 +146,7 @@ function getAnswers() {
     var answer = stuff.results
     for (var j = 0; j < answer.length; j++){
         if(answer[j]['question'] == $('#questionId_field').val()){
+            $("#answer").html("")
             $table.html($table.html() + "<tr><td>" + answer[j]['text'] + "<br>")
             $('#answer').append($table)
         }
@@ -166,6 +169,9 @@ function profileOnload() {
       }
     });
 }
+
+
+getAnswers()
 
 
 $("#post_question").click(questionPost)

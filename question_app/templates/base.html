@@ -41,7 +41,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                        <a class="navbar-brand" href="/question_app/main">Main Page</a>
+                        <a href="/question_app/main" ><img src="http://icons.iconarchive.com/icons/iconexpo/speech-balloon-orange/256/speech-balloon-orange-q-icon.png" style="width:10%"></a>
                 </div>
                 <div class="collapse navbar-collapse" id = 'navbardropdown'>
                     <ul class="nav navbar-nav navbar-right">
@@ -54,6 +54,11 @@
                         <li><a href="{% url 'login' %}">Login</a></li>
                             {% endif %}
                         </button>
+                        <li>
+                            <form id='searchForm'>
+                                <input id="search" type="text" name="search" placeholder="Search..">
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>

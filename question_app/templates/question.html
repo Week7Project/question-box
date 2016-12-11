@@ -5,10 +5,13 @@
     <head>
         <meta charset="utf-8">
         <title>Question</title>
+        {% block content %}
+        <link rel="stylesheet" href="{% static 'question_app/css/question.css' %}">
     </head>
-    {% block content %}
     <body onload="getAnswers()">
-        Current user: {{ user.username }}
+        Current user: {{ user.username }} <br>
+        Posted: {{ question.question_created|timesince }} ago
+        <br>
         <input id="userId_field" type='hidden' name='userId' value='{{ user.id }}'>
         <input id="questionId_field" type='hidden' name='questionIdId' value='{{ question.id }}'>
         <br>
@@ -25,7 +28,7 @@
 
         <form>
           <p>Your answer</p>
-          <input type="text" id="answerText">
+          <textarea type="text" id="answerText"> </textarea>
           <br>
           <button id="post_answer">Post Your Answer</button>
         </form>

@@ -18,15 +18,11 @@
                  <div id='questionbox' class="container">
                  <h4>{{{displayLink this}}}</h4>
                  <h5>{{this.text}}</h5>
-                 <div id='thisTagName'>Tags: </div>
-                 <div onclick=myHandler() id={{{this.id}}}>&rarr; Click Here! &larr;</div>
-                 <button>
-                 <span id={{{this.id}}} onClick=taskPatch() class="glyphicon glyphicon-arrow-up"></span>
-             </button>
-             <button>
-                 <span id='votebuttonDown' class="glyphicon glyphicon-arrow-down"></span>
-             </button>
-                <div id='poster' >posted: {{this.question_created}} {{this.poster}} user</div>
+                 {{#each this.tags as |tag|}}
+                 <div id='thisTagName'>Tags: {{tag.name}}</div>
+                 {{/each}}
+                 <div onclick=myHandler() id={{{this.id}}}>Answers: {{this.score}}</div>
+                <div id='poster' >posted: {{{ this.question_created }}} {{{ this.poster.username }}}</div>
                  </div>
                  <br>
              </header>

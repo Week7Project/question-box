@@ -14,6 +14,7 @@ function list_questions(){
        var source = $('#post-template').html();
        var template = Handlebars.compile(source);
        var html = template(questions.results);
+       console.log(questions.results)
        $('main').append(html);
        for (var i = 0; i <= questions.length; i++){
            $.ajax("/api/tag/" + i).done(function(obj) {
@@ -26,9 +27,7 @@ function list_questions(){
 }
 
 list_questions()
-function myHandler(){
-    alert(myHandler.caller.arguments[0].target.id)
-}
+
 
 Handlebars.registerHelper('displayLink', function(id, title, url, text) {
      title = Handlebars.Utils.escapeExpression(title);

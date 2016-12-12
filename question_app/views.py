@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from question_app import models
 
 
+
 class QuestionViewSet(viewsets.ModelViewSet):
 
     queryset = Question.objects.all().order_by('title')
@@ -20,7 +21,6 @@ class AnswerViewSet(viewsets.ModelViewSet):
 
     queryset = Answer.objects.all().order_by('id')
     serializer_class = AnswerSerializer
-
 
 class TagViewSet(viewsets.ModelViewSet):
 

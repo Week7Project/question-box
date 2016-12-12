@@ -2,42 +2,70 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
+    {% block content %}
     <head>
         <meta charset="utf-8">
-        <title>Question</title>
-        {% block content %}
         <link rel="stylesheet" href="{% static 'question_app/css/question.css' %}">
+        <title>Question</title>
     </head>
-    <body>
-        Current user: {{ user.username }} <br>
-        Posted: {{ question.question_created|timesince }} ago
-        <br>
-        <input id="userId_field" type='hidden' name='userId' value='{{ user.id }}'>
-        <input id="questionId_field" type='hidden' name='questionIdId' value='{{ question.id }}'>
-        <br>
-         <h2>{{question.title}}</h2>
-         <h3>{{question.text}}</h3>
-        <div id="questionField"></div>
-
-        <br>
-        <br>
-        <div id="answer"></div>
-        <br>
-        <br>
-        <br>
-
-        <form>
-          <p>Your answer</p>
-          <textarea type="text" id="answerText"> </textarea>
-          <br>
-          <button id="post_answer">Post Your Answer</button>
-        </form>
+            <article class="post-container">
+               <div class="row">
+               <div class="col-md-12">
+               <div id="questDetail">
+               </div>
+               </div>
+               </div>
+           </article>
+           <article class="post-container">
+               <div class="row">
+               <div class="col-md-12">
+               <div id="answerDetail"></div>
+               </div>
+               </div>
+               </div>
+           </article>
 
 
+       <script id="post-template" type="text/x-handlebars-template">
+           <article class="post-container">
+            <div id='questionbox' class="container">
+               {% verbatim %}
+                   <h3 id="questTitle">{{title}}</h3>
+                   <p id="questText">{{text}}</p>
+               {% endverbatim %}
+           </div>
+           <br>
+           </article>
+       </script>
+       <script id="post-template-two" type="text/x-handlebars-template">
+           <article class="post-container-two">
+               {% verbatim %}
+                   {{#each this}}
+                   <article class="post-container">
+                   <div id='answerbox' class="container">
+                   <p id="answerTitle">{{this.this.text}}<p>
+                   <p>Score: {{this.this.score}}</p>
+                   <span id={{{this.id}}} onClick=scorePatchUp() class="glyphicon glyphicon-arrow-up"></span>
+                   <span id={{{this.id}}} onClick=scorePatchDown() class="glyphicon glyphicon-arrow-down"></span>
+                   </div>
+                   <br>
+                   {{/each}}
+               {% endverbatim %}
+           </article>
+       </script>
 
+       <form id="answerForm">
+         <p>Your answer</p>
+         <textarea type="text" id="answerText"> </textarea>
+         <br>
+         <button id="post_answer">Post Your Answer</button>
+       </form>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{% static 'question_app/js/question_app.js' %}"></script>
     </body>
-    {% endblock %}
+        {% endblock %}
+
 </html>

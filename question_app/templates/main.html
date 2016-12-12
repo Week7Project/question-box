@@ -14,10 +14,10 @@
         <script id="post-template" type="text/x-handlebars-template">
              {{#each this}}
              <article class="post-container">
-             <header id='main'>
                  <div id='questionbox' class="container">
                  <h4>{{{displayLink this}}}</h4>
                  <h5>{{this.text}}</h5>
+
                  {{#each this.tags as |tag|}}
                  <div id='thisTagName'>Tags: {{tag.name}}</div>
                  {{/each}}

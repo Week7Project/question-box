@@ -29,16 +29,26 @@ $.ajaxSetup({
 
 function questionPost(){
     var poster = $('#username_field').val()
-    console.log(poster)
     var title = $("#title").val()
     var text = $("#text").val()
-    var tag =$("#tag").val()
-    var postdata = {'title':title, 'text':text, 'tags':tag, 'poster':poster}
-    console.log(postdata)
-    $.ajax({url:'/api/question/', data:postdata, type:'POST'
-    }).done(function(){
-        location = location
-    })
+    tagName = $("#dropDownTags").val()
+    console.log("post it")
+    $.ajax("/api/tag/").done(function(obj) {
+        tags = (obj.results)
+        console.log(tags.length)
+        for (var j = 0; j < tags.length; j++){
+            if(tags[j]['name'] == tagName){
+                tagId =  tags[j]['id']
+                $('#tagId').val(tagId)
+            }
+        }
+        var tag = $("#tagId").val()
+        var postdata = {'title':title, 'text':text, 'tags':tagId, 'poster':poster}
+        $.ajax({url:'/api/question/', data:postdata, type:'POST'
+        }).done(function(){
+            location = location
+        })
+    });
 }
 
 

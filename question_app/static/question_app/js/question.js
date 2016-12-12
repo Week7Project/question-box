@@ -39,15 +39,13 @@ currentURL()
 
 
 function getQuestionDetail(url){
-   var id = url.split('/')
-   id =url.slice(-1)
-   console.log(id)
+   var id = url.split('/');
+   id = id[id.length-1]
    $.ajax({
        url: '/api/question/' + id,
        type: 'GET',
    }).done(function(results){
        var answer = results.answer
-       console.log(results)
        displayAnswers(answer)
        var context = {
            title: results.title,
@@ -66,7 +64,6 @@ function getQuestionDetail(url){
 function scorePatchUp(){
     var id = scorePatchUp.caller.arguments[0].target.id
     $.getJSON( "/api/answer/" + id, function ( answer ) {
-        console.log(answer)
     var score = answer.score
     var patchData = {'score':score + 1}
     jQuery.ajax({url:'/api/answer/' +  id + '/',
@@ -79,7 +76,6 @@ function scorePatchUp(){
 function scorePatchDown(){
     var id = scorePatchDown.caller.arguments[0].target.id
     $.getJSON( "/api/answer/" + id, function ( answer ) {
-        console.log(answer)
     var score = answer.score
     var patchData = {'score':score - 1}
     jQuery.ajax({url:'/api/answer/' +  id + '/',
@@ -90,10 +86,27 @@ function scorePatchDown(){
 })}
 
 function displayAnswers(answer){
-   console.log(answer)
    var sourceTwo = $('#post-template-two').html()
    var templateTwo = Handlebars.compile(sourceTwo)
    var htmlTwo = templateTwo(answer)
    $('#answerDetail').append(htmlTwo)
 
 }
+
+function answerPost(){
+    var url = window.location.href
+    url = url.replace(/[?]/g,'');
+    console.log(url)
+    url = url.split('/');
+    url = url[url.length-1]
+    console.log(url)
+    var user_div = document.getElementById("userid").innerHTML
+    var question_id = url
+    var answer = $('#answerText').val()
+    var postdata = {'text': answer, 'score': '0', 'poster': user_div, 'question': question_id}
+    console.log(postdata)
+    jQuery.ajax({url:'/api/answer/', data:postdata, type:'POST'
+    })
+    // getAnswers()
+}
+$("#post_answer").click(answerPost)

@@ -98,19 +98,7 @@ function getQuestionDetail(question_id) {
     })
 }
 
-
-function answerPost(){
-    console.log("answer func")
-    var user_div = $('#userId_field').val()
-    question_id = $('#questionId_field').val()
-    var answer = $('#answerText').val()
-    var postdata = {'text': answer, 'score': 0, 'poster': user_div, 'question': question_id}
-    jQuery.ajax({url:'/api/answer/', data:postdata, type:'POST'
-    }).done(function(){
-        console.log(postdata)
-    })
     // getAnswers()
-}
 
 
 function getQuestionsForUser() {
@@ -178,6 +166,5 @@ $("#post_question").click(questionPost)
 $("#dropDownTags").click(dropDownTags)
 $("#getQuestionsForUser").click(getQuestionsForUser)
 $("#get_question_details").click(getQuestionDetail)
-$("#post_answer").click(answerPost)
 $("#get_questions").click(getQuestions)
 $("#get_answers").click(getAnswers)

@@ -100,19 +100,7 @@ function getQuestionDetail(question_id) {
     })
 }
 
-
-function answerPost(){
-    console.log("answer func")
-    var user_div = $('#userId_field').val()
-    question_id = $('#questionId_field').val()
-    var answer = $('#answerText').val()
-    var postdata = {'text': answer, 'score': 0, 'poster': user_div, 'question': question_id}
-    jQuery.ajax({url:'/api/answer/', data:postdata, type:'POST'
-    }).done(function(){
-        console.log(postdata)
-    })
     // getAnswers()
-}
 
 
 function getQuestionsForUser() {
@@ -173,13 +161,31 @@ function profileOnload() {
 }
 
 
+function answerPost(){
+    var url = window.location.href
+    url = url.replace(/[?]/g,'');
+    console.log(url)
+    url = url.split('/');
+    url = url[url.length-1]
+    console.log(url)
+    var user_div = document.getElementById("userid").innerHTML
+    var question_id = url
+    var answer = $('#answerText').val()
+    var postdata = {'text': answer, 'score': '0', 'poster': user_div, 'question': question_id}
+    console.log(postdata)
+    jQuery.ajax({url:'/api/answer/', data:postdata, type:'POST'
+    })
+    // getAnswers()
+}
+
+
 getAnswers()
 
 
+$("#post_answer").click(answerPost)
 $("#post_question").click(questionPost)
 $("#dropDownTags").click(dropDownTags)
 $("#getQuestionsForUser").click(getQuestionsForUser)
 $("#get_question_details").click(getQuestionDetail)
-$("#post_answer").click(answerPost)
 $("#get_questions").click(getQuestions)
 $("#get_answers").click(getAnswers)

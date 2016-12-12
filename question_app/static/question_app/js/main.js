@@ -39,8 +39,6 @@ Handlebars.registerHelper('displayLink', function(id, title, url, text) {
        return '<h2>' + this.text + '</h2>';
 })
 
-$("#votebuttonUp").click(taskPatch)
-
 //
 // function getTagName(){
 //     tagId = (document.getElementById('thisTagName').innerHTML)

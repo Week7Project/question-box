@@ -21,8 +21,8 @@
                  {{#each this.tags as |tag|}}
                  <div id='thisTagName'>Tags: {{tag.name}}</div>
                  {{/each}}
-                 <div onclick=myHandler() id={{{this.id}}}>Answers: {{this.score}}</div>
-                <div id='poster' >posted: {{{ this.question_created }}} {{{ this.poster.username }}}</div>
+                 <div onclick=myHandler() id={{{this.id}}}>Answers: {{this.answer.length}}</div>
+                <div id='poster' align="right">posted: {{{ this.question_created }}} user: {{{ this.poster }}}</div>
                  </div>
                  <br>
              </header>

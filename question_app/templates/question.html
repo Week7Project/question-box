@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{% static 'question_app/css/question.css' %}">
         <title>Question</title>
     </head>
+    <body>
             <article class="post-container">
                <div class="row">
                <div class="col-md-12">
@@ -52,19 +53,19 @@
                    {{/each}}
                {% endverbatim %}
            </article>
+
        </script>
-
+       <p hidden id="userid" value={{user.id}}>{{user.id}}</p>
        <form id="answerForm">
-         <p>Your answer</p>
-         <textarea type="text" id="answerText"> </textarea>
-         <br>
-         <button id="post_answer">Post Your Answer</button>
-       </form>
-
+        <p>Your answer</p>
+        <textarea type="text" id="answerText"> </textarea>
+        <br>
+        <button id="post_answer">Post Your Answer</button>
+      </form>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="{% static 'question_app/js/question_app.js' %}"></script>
+        <script type="text/javascript" src="{% static 'question_app/js/question.js' %}"></script>
     </body>
         {% endblock %}
 

@@ -9,6 +9,13 @@ class TagSerializer(serializers.ModelSerializer):
         fields = ('__all__')
 
 
+class AnswerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = ('url', 'text', 'poster', 'question', 'score', 'answer_created', 'answer_modified', 'id')
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -23,21 +30,10 @@ class PosterSerializer(serializers.ModelSerializer):
         fields = ('user', 'score')
 
 
-class AnswerSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Answer
-        fields = ('url', 'text', 'poster', 'question', 'score', 'answer_created', 'answer_modified', 'id')
-
-
 class QuestionSerializer(serializers.ModelSerializer):
     tags = TagSerializer(read_only=True, many=True)
     answer = AnswerSerializer(many=True, read_only=True)
-    # user = UserSerializer(read_only=True)
 
     class Meta:
         model = Question
-        fields = ('url', 'title', 'text', 'tags', 'poster', 'answer', 'question_created', 'question_modified', 'id')
-    #
-    # def create(self, validated_data):
-    #     return Question(**validated_data)
+        fields = ('url', 'title', 'text', 'tags', 'answer', 'poster', 'question_created', 'question_modified', 'id')

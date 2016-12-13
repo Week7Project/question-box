@@ -19,7 +19,7 @@
                  <h5>{{this.text}}</h5>
 
                  {{#each this.tags as |tag|}}
-                 <div id='thisTagName'>Tags: {{tag.name}}</div>
+                 <div id='thisTagName'><span>&nbsp;{{tag.name}}&nbsp;</span></div>
                  {{/each}}
                  <div onclick=myHandler() id={{{this.id}}}>Answers: {{this.answer.length}}</div>
                 <div id='poster' align="right">posted: {{{ this.question_created }}} user: {{{ this.poster }}}</div>

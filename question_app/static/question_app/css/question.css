@@ -1,10 +1,10 @@
-
 #answerbox{
-    border-radius: 10px;
-    border: double;
-    border-color: black;
+    margin-left: 70px;
+    border-top: double;
+    border-bottom: double;
+    border-color: lightgrey;
     border-width: thin;
-    background-color: lightgrey;
+    word-wrap: break-word;
 }
 
 #votebutton{
@@ -12,14 +12,20 @@
 }
 
 #questionbox{
-    border-radius: 10px;
-    border: double;
-    border-color: black;
+    margin-left: 70px;
+    border-top: double;
+    border-bottom: double;
+    border-color: lightgrey;
     border-width: thin;
-    background-color: darkgrey;
+    background-color: #f8f8f8;
+}
+
+#answerForm{
+    margin-left: 70px;
 }
 
 textarea {
+    position: relative;
     width: 50%;
     height: 150px;
     padding: 12px 20px;
@@ -41,5 +47,25 @@ textarea {
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
+    cursor: pointer;
+}
+
+#post_answer:hover{
+    background-color: orange;
+}
+
+.glyphicon{
+    color: #008CBA;
+}
+
+.glyphicon-arrow-up:active {
+    transform: translateY(-4px);
+}
+
+.glyphicon-arrow-down:active {
+  transform: translateY(4px);
+}
+
+.glyphicon:hover{
     cursor: pointer;
 }

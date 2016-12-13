@@ -1,10 +1,10 @@
 
 #answerbox{
     border-radius: 10px;
-    border: double;
+    border-top : double;
+    border-bottom : double;
     border-color: black;
     border-width: thin;
-    background-color: lightgrey;
 }
 
 #votebutton{
@@ -12,11 +12,13 @@
 }
 
 #questionbox{
-    border-radius: 10px;
-    border: double;
-    border-color: black;
+    margin-left: 70px;
+    border-top: double;
+    border-bottom: double;
+    border-color: lightgrey;
     border-width: thin;
-    background-color: darkgrey;
+    background-color: #f8f8f8;
+}
 
 textarea {
     width: 50%;
@@ -49,4 +51,14 @@ body{
 
 #votebutton{
     pointer-events: none;
+}
+
+#thisTagName span{
+    color: #f8f8f8;
+    background-color: #008CBA;
+}
+
+#thisTagName span:hover{
+    cursor: pointer;
+    color: orange;
 }

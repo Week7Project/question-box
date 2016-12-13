@@ -28,16 +28,6 @@ $.ajaxSetup({
         }
     }
 });
-//
-//
-// function getTagName(){
-//     tagId = (document.getElementById('thisTagName').innerHTML)
-//     $.ajax("/api/tag/" + tagId).done(function(obj) {
-//         tagName =  obj['name']
-//         $('#thisTagName').val(tagName)
-//         console.log($('#thisTagName'))
-//     })
-// }
 
 
 function dropDownTags(){
@@ -100,21 +90,23 @@ function getQuestionDetail(question_id) {
     })
 }
 
-    // getAnswers()
-
 
 function getQuestionsForUser() {
     $("#info").html("")
     var $table = $("<p>")
     $.ajax('/api/question/').done(function (stuff){
-    var que = stuff
-    if(que['poster'] == $('#username_field').val()){
+        var que = stuff.results
         console.log(que)
-        $table.html($table.html() + "<tr><td>" + stuff['title'] + "<br>")
-    // $('#info').append($table)
-    $('main').append(html);
-     console.log($('main'))
-    }
+        for (var i = 0; i < que.length; i++){
+            console.log()
+            if(que[i]['poster'] == $('#username_field').val()){
+                console.log(que[i].tags[0]['name'])
+                $table.html($table.html() + "<div id='questionbox'>" + "<h4>" + "<a href=/question/" +
+                que[i]['id'] + ">" + que[i]['title']+ "</h4>" + "</a>" + "Answer Count: " +
+                que[i]['answer'].length + "<br><p id='tagStyle'><a><span>&nbsp;" + que[i].tags[0]['name'] + "&nbsp;</span></a></p></div><br>")
+                $('#questions').append($table)
+            }
+        }
     })
 }
 
@@ -147,7 +139,6 @@ function getAnswers() {
 
 function profileOnload() {
     var user_div = $('#username_field').val()
-    var context1 = getQuestionsForUser(user_div)
     var context = list_questions()
     Handlebars.registerHelper('displayLink', function(id, title, url) {
      title = Handlebars.Utils.escapeExpression(title);

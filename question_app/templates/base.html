@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="{% static 'question_app/css/base.css' %}">
         <meta charset="utf-8">
         <title>Question Box</title>
+        <link rel='icon' href='http://icons.iconarchive.com/icons/iconexpo/speech-balloon-orange/256/speech-balloon-orange-q-icon.png' type='image/png'/>
     </head>
     <body>
         <div class="modal fade bd-example-modal-sm" id = "modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -45,15 +46,14 @@
                 </div>
                 <div class="collapse navbar-collapse" id = 'navbardropdown'>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{% url 'profile' %}">{{user.username}}</a></li>
-                        <li><button id="post_question" data-toggle="modal" data-target=".bd-example-modal-sm">Ask A Question</button></li>
-                        <li><a href="/question_app/register">Create User</a></li>
+                        <li><a id='navbutton' href="{% url 'profile' %}">{{user.username}}</a></li>
+                        <li><a id='navbutton' data-toggle="modal" data-target=".bd-example-modal-sm">Ask A Question</a></li>
+                        <li><a id='navbutton' href="/question_app/register">Create User</a></li>
                             {% if user.is_authenticated %}
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li><a id='navbutton' href="{% url 'logout' %}">Logout</a></li>
                             {% else %}
-                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a id='navbutton' href="{% url 'login' %}">Login</a></li>
                             {% endif %}
-                        </button>
                         <li>
                             <form id='searchForm'>
                                 <input id="search" type="text" name="search" placeholder="Search..">

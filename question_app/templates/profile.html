@@ -6,23 +6,26 @@
   <head>
       <meta charset="utf-8">
       <title>Handlebars</title>
+      <link rel="stylesheet" href="{% static 'question_app/css/profile.css' %}">
   </head>
-  <body onload="profileOnload()">
-      <h1>YOU ARE {{user.username}}</h1>
+  <body onload="getQuestionsForUser()">
+      <div id="profile">
       <input id="username_field" type='hidden' name='userId' value='{{ user.id }}'>
-      <main>i'm here
-      {% verbatim %}
-      <script id="post-template" type="text/x-handlebars-template">
-           {{#each this}}
-           <article class="post-container">
-           <header id='main'>
-               {{{displayLink this}}}
-           </header>
-           </article>
-           {{/each}}
-      </script>
-      {% endverbatim %}
-      </main>
+      <a><img src="http://tr3.cbsistatic.com/fly/bundles/techrepubliccore/images/icons/standard/icon-user-default.png" style="width:70%"></a>
+      <h3>Profile Name: {{user.username}}</h3>
+      </div>
+      <!-- <main id="questions"> -->
+         <input id="username_field" type='hidden' name='userId' value='{{ user.id }}'>
+
+
+      <div align="center" class="container" id="questions">
+
+      </div>
+
+
+
+
+      <!-- </main> -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script type="text/javascript" src="{% static 'question_app/js/question_app.js' %}"></script>

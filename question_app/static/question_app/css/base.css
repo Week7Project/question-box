@@ -6,6 +6,16 @@
 .navbar {
     min-height:4px !important;
     background-color: black;
+    color: orange;
+}
+
+#navbutton{
+    color: #FFFAFA;
+}
+
+#navbutton:hover{
+    color: orange;
+    cursor: pointer;
 }
 
 #icon{

@@ -1,0 +1,30 @@
+#profile {
+    margin-left: 70px;
+    float: left;
+    width:250px;
+    }
+
+#questions {
+    margin-right: 200px;
+    float: right;
+    width:500px;
+   }
+
+   #questionbox{
+       margin-left: 70px;
+       border-top: double;
+       border-bottom: double;
+       border-color: lightgrey;
+       border-width: thin;
+       background-color: #f8f8f8;
+   }
+
+#tagStyle span{
+    color: #f8f8f8;
+    background-color: #008CBA;
+}
+
+#tagStyle span:hover{
+    cursor: pointer;
+    color: orange;
+}

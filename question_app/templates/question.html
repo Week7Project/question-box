@@ -45,8 +45,8 @@
                    <article class="post-container">
                    <div id='answerbox' class="container">
                    <p id="answerTitle">{{this.this.text}}<p>
-                   <p>Score: {{this.this.score}}</p>
                    <span id={{{this.id}}} onClick=scorePatchUp() class="glyphicon glyphicon-arrow-up"></span>
+                   {{this.this.score}}
                    <span id={{{this.id}}} onClick=scorePatchDown() class="glyphicon glyphicon-arrow-down"></span>
                    </div>
                    <br>
@@ -57,7 +57,7 @@
        </script>
        <p hidden id="userid" value={{user.id}}>{{user.id}}</p>
        <form id="answerForm">
-        <p>Your answer</p>
+        <p><h4>Your answer</h4></p>
         <textarea type="text" id="answerText"> </textarea>
         <br>
         <button id="post_answer">Post Your Answer</button>

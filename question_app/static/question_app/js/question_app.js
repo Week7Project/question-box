@@ -31,8 +31,10 @@ $.ajaxSetup({
 
 
 function dropDownTags(){
+    console.log("here")
     $.ajax("/api/tag/").done(function(obj) {
         $("#dropDownTags").html("")
+        console.log(obj)
         tags = (obj.results)
         for (var j = 0; j < tags.length; j++){
             $("#dropDownTags").append("<option>" + tags[j]['name'] + "</option>");

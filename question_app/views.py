@@ -33,8 +33,17 @@ class AnswerViewSet(viewsets.ModelViewSet):
 
 
 class TagViewSet(viewsets.ModelViewSet):
+    serializer_class = TagSerializer
+    queryset = Tag.objects.all()
 
-    queryset = Tag.objects.all().order_by('name')
+    def get_queryset(self):
+        queryset = Tag.objects.all()
+        question = self.request.query_params.get('question', None)
+        if question is not None:
+            queryset = queryset.filter(question=question)
+        return queryset
+
+    queryset = Tag.objects.all().order_by('id')
     serializer_class = TagSerializer
 
 

@@ -14,7 +14,7 @@ SECRET_KEY = '3=@xd&51&$z8e7m*##l9%6v$j-7ol@lu5-maz^uon#g)#c8a72'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['0.0.0.0', 'floating-beyond-11927.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', 'vast-wave-23936.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

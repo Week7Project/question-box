@@ -31,7 +31,7 @@ class PosterSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    tags = TagSerializer(read_only=True, many=True)
+    # tags = TagSerializer(read_only=True, many=True)
     answer = AnswerSerializer(many=True, read_only=True)
 
     class Meta:

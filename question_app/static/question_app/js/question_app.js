@@ -34,7 +34,6 @@ function dropDownTags(){
     console.log("here")
     $.ajax("/api/tag/").done(function(obj) {
         $("#dropDownTags").html("")
-        console.log(obj)
         tags = (obj.results)
         for (var j = 0; j < tags.length; j++){
             $("#dropDownTags").append("<option>" + tags[j]['name'] + "</option>");
@@ -48,10 +47,8 @@ function questionPost(){
     var title = $("#title").val()
     var text = $("#text").val()
     tagName = $("#dropDownTags").val()
-    console.log("post it")
     $.ajax("/api/tag/").done(function(obj) {
         tags = (obj.results)
-        console.log(tags.length)
         for (var j = 0; j < tags.length; j++){
             if(tags[j]['name'] == tagName){
                 tagId =  tags[j]['id']
@@ -60,8 +57,6 @@ function questionPost(){
         }
         var tag = $("#tagId").val()
         var postdata = {'title':title, 'text':text, 'tags':tag, 'poster':poster}
-        console.log(postdata)
-        console.log(poster)
         $.ajax({url:'/api/question/', data:postdata, type:'POST'
         }).done(function(){
             location = location
@@ -98,11 +93,8 @@ function getQuestionsForUser() {
     var $table = $("<p>")
     $.ajax('/api/question/').done(function (stuff){
         var que = stuff.results
-        console.log(que)
         for (var i = 0; i < que.length; i++){
-            console.log()
             if(que[i]['poster'] == $('#username_field').val()){
-                console.log(que[i].tags[0]['name'])
                 $table.html($table.html() + "<div id='questionbox'>" + "<h4>" + "<a href=/question/" +
                 que[i]['id'] + ">" + que[i]['title']+ "</h4>" + "</a>" + "Answer Count: " +
                 que[i]['answer'].length + "<br><p id='tagStyle'><a><span>&nbsp;" + que[i].tags[0]['name'] + "&nbsp;</span></a></p></div><br>")
@@ -157,15 +149,12 @@ function profileOnload() {
 function answerPost(){
     var url = window.location.href
     url = url.replace(/[?]/g,'');
-    console.log(url)
     url = url.split('/');
     url = url[url.length-1]
-    console.log(url)
     var user_div = document.getElementById("userid").innerHTML
     var question_id = url
     var answer = $('#answerText').val()
     var postdata = {'text': answer, 'score': '0', 'poster': user_div, 'question': question_id}
-    console.log(postdata)
     jQuery.ajax({url:'/api/answer/', data:postdata, type:'POST'
     })
     // getAnswers()

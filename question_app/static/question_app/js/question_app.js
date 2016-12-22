@@ -55,7 +55,6 @@ function questionPost(){
         for (var j = 0; j < tags.length; j++){
             if(tags[j]['name'] == tagName){
                 tagId =  tags[j]['id']
-                // $('#tagId').val(tagId)
             }
         }
         tag = tagId

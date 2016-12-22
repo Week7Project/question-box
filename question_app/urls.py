@@ -1,6 +1,4 @@
 from django.conf.urls import include, url
-from question_app import views
-from django.contrib import admin
 import question_app
 from django.contrib.auth import views as auth_views
 

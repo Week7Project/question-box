@@ -41,24 +41,27 @@ function dropDownTags(){
     });
 }
 
+var tagId
 
 function questionPost(){
+    console.log("Here")
     var poster = $('#username_field').val()
     var title = $("#title").val()
     var text = $("#text").val()
     tagName = $("#dropDownTags").val()
+    console.log(tagName)
     $.ajax("/api/tag/").done(function(obj) {
         tags = (obj.results)
         for (var j = 0; j < tags.length; j++){
             if(tags[j]['name'] == tagName){
                 tagId =  tags[j]['id']
-                $('#tagId').val(tagId)
+                // $('#tagId').val(tagId)
             }
         }
-        var tag = $("#tagId").val()
+        tag = tagId
         var postdata = {'title':title, 'text':text, 'tags':tag, 'poster':poster}
-        $.ajax({url:'/api/question/', data:postdata, type:'POST'
-        }).done(function(){
+        console.log(tag)
+        $.ajax({url:'/api/question/', data:postdata, type:'POST'}).done(function(){
             location = location
         })
     })

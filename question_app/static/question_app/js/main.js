@@ -14,13 +14,11 @@ function list_questions(){
        var source = $('#post-template').html();
        var template = Handlebars.compile(source);
        var html = template(questions.results);
-       console.log(questions.results)
        $('main').append(html);
        for (var i = 0; i <= questions.length; i++){
            $.ajax("/api/tag/" + i).done(function(obj) {
                tagName =  obj['name']
                $('#thisTagName').html(tagName)
-               console.log(tagName)
             })
        }
    })
@@ -38,15 +36,3 @@ Handlebars.registerHelper('displayLink', function(id, title, url, text) {
        return '<a href="' + '/' + datatype + '/' + this.id + '">' + '<b>' + this.title + '</b>' + '</a>';
        return '<h2>' + this.text + '</h2>';
 })
-
-//
-// function getTagName(){
-//     tagId = (document.getElementById('thisTagName').innerHTML)
-//     $.ajax("/api/tag/" + tagId).done(function(obj) {
-//         tagName =  obj['name']
-//         $('#thisTagName').html(tagName)
-//         console.log(tagName)
-//     })
-// }
-//
-// getTagName()

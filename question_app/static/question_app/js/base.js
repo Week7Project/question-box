@@ -32,10 +32,8 @@ function questionPost(){
     var title = $("#title").val()
     var text = $("#text").val()
     tagName = $("#dropDownTags").val()
-    console.log("post it")
     $.ajax("/api/tag/").done(function(obj) {
         tags = (obj.results)
-        console.log(tags.length)
         for (var j = 0; j < tags.length; j++){
             if(tags[j]['name'] == tagName){
                 tagId =  tags[j]['id']
@@ -53,7 +51,6 @@ function questionPost(){
 
 
 function dropDownTags(){
-    console.log("here")
     $.ajax("/api/tag/").done(function(obj) {
         $("#dropDownTags").html("")
         console.log(obj)
@@ -64,7 +61,6 @@ function dropDownTags(){
     });
 }
 
+
 $("#dropDownTags").click(dropDownTags)
-
-
 $("#post_question").click(questionPost)

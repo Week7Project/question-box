@@ -62,7 +62,7 @@ function getQuestionDetail(url){
 
 
 function scorePatchUp(){
-    var id = scorePatchUp.caller.arguments[0].target.id
+    var id = document.getElementById("answerId").innerHTML
     $.getJSON( "/api/answer/" + id, function ( answer ) {
     var score = answer.score
     var patchData = {'score':score + 1}
@@ -103,12 +103,13 @@ function answerPost(){
     url = url[url.length-1]
     console.log(url)
     var user_div = document.getElementById("userid").innerHTML
-    var question_id = url
+    var question_id = document.getElementById("questionId").innerHTML
     var answer = $('#answerText').val()
     var postdata = {'text': answer, 'score': '0', 'poster': user_div, 'question': question_id}
     console.log(postdata)
     jQuery.ajax({url:'/api/answer/', data:postdata, type:'POST'
     })
-    // getAnswers()
 }
+
+
 $("#post_answer").click(answerPost)

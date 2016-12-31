@@ -8,24 +8,21 @@ function taskPatch(){
 })}
 
 
-// getQuestions()
 function list_questions(){
    $.getJSON( "/api/question/", function ( questions ) {
        var source = $('#post-template').html();
        var template = Handlebars.compile(source);
        var html = template(questions.results);
        $('main').append(html);
-       for (var i = 0; i <= questions.length; i++){
-           $.ajax("/api/tag/" + i).done(function(obj) {
-               tagName =  obj['name']
-               $('#thisTagName').html(tagName)
-            })
-       }
    })
 }
 
 list_questions()
 
+
+Handlebars.registerHelper("prettifyDate", function(timestamp) {
+    return new Date(timestamp).toString('yyyy-MM-dd')
+});
 
 Handlebars.registerHelper('displayLink', function(id, title, url, text) {
      title = Handlebars.Utils.escapeExpression(title);

@@ -31,7 +31,6 @@ $.ajaxSetup({
 
 
 function dropDownTags(){
-    console.log("here")
     $.ajax("/api/tag/").done(function(obj) {
         $("#dropDownTags").html("")
         tags = (obj.results)
@@ -44,12 +43,10 @@ function dropDownTags(){
 var tagId
 
 function questionPost(){
-    console.log("Here")
     var poster = $('#username_field').val()
     var title = $("#title").val()
     var text = $("#text").val()
     tagName = $("#dropDownTags").val()
-    console.log(tagName)
     $.ajax("/api/tag/").done(function(obj) {
         tags = (obj.results)
         for (var j = 0; j < tags.length; j++){
@@ -59,7 +56,6 @@ function questionPost(){
         }
         tag = tagId
         var postdata = {'title':title, 'text':text, 'tags':tag, 'poster':poster}
-        console.log(tag)
         $.ajax({url:'/api/question/', data:postdata, type:'POST'}).done(function(){
             location = location
         })
@@ -97,11 +93,19 @@ function getQuestionsForUser() {
         var que = stuff.results
         for (var i = 0; i < que.length; i++){
             if(que[i]['poster'] == $('#username_field').val()){
-                $table.html($table.html() + "<div id='questionbox'>" + "<h4>" + "<a href=/question/" +
-                que[i]['id'] + ">" + que[i]['title']+ "</h4>" + "</a>" + "Answer Count: " +
-                que[i]['answer'].length + "<br><p id='tagStyle'><a><span>&nbsp;" + que[i].tags[0]['name'] + "&nbsp;</span></a></p></div><br>")
-                $('#questions').append($table)
-            }
+                if(que[i].tags.length > 0){
+                    $table.html($table.html() + "<div id='questionbox'>" + "<h4>" + "<a href=/question/" +
+                    que[i]['id'] + ">" + que[i]['title']+ "</h4>" + "</a>" + "Answer Count: " +
+                    que[i]['answer'].length + "<br><p id='tagStyle'><a><span>&nbsp;" + que[i].tags[0]['name'] + "&nbsp;</span></a></p></div><br>")
+                    $('#questions').append($table)
+                }
+                else{
+                    $table.html($table.html() + "<div id='questionbox'>" + "<h4>" + "<a href=/question/" +
+                    que[i]['id'] + ">" + que[i]['title']+ "</h4>" + "</a>" + "Answer Count: " +
+                    que[i]['answer'].length + "<br></div><br>")
+                    $('#questions').append($table)
+                    }
+                }
         }
     })
 }
@@ -159,14 +163,12 @@ function answerPost(){
     var postdata = {'text': answer, 'score': '0', 'poster': user_div, 'question': question_id}
     jQuery.ajax({url:'/api/answer/', data:postdata, type:'POST'
     })
-    // getAnswers()
 }
 
 
 getAnswers()
 
 
-$("#post_answer").click(answerPost)
 $("#post_question").click(questionPost)
 $("#dropDownTags").click(dropDownTags)
 $("#getQuestionsForUser").click(getQuestionsForUser)

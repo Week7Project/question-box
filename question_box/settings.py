@@ -104,11 +104,7 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-DATETIME_FORMAT = 'Y-m-d H:i:sO'
-
-DATE_FORMAT = 'Y-m-d'
-
-DATE_INPUT_FORMATS = '%d-%m-%Y'
+DATETIME_INPUT_FORMATS = '%m/%d/%Y %H:%M'
 
 USE_I18N = True
 

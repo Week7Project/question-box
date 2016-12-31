@@ -17,12 +17,12 @@
                  <div id='questionbox' class="container">
                  <h4>{{{displayLink this}}}</h4>
                  <h5>{{this.text}}</h5>
-
-                 {{#each this.tags as |tag|}}
+                 <div id='thisTagName'><span>&nbsp;{{this.tags.0.name}}&nbsp;</span></div>
+                 <!-- {{#each this.tags as |tag|}}
                  <div id='thisTagName'><span>&nbsp;{{tag.name}}&nbsp;</span></div>
-                 {{/each}}
-                 <div onclick=myHandler() id={{{this.id}}}>Answers: {{this.answer.length}}</div>
-                <div id='poster' align="right">posted: {{{ this.question_created }}} user: {{{ this.poster }}}</div>
+                 {{/each}} -->
+                 <div id={{{this.id}}}>Answers: {{this.answer.length}}</div>
+                 <div id='poster' align="right">posted: {{{ prettifyDate this.question_created }}} user: {{{ this.poster }}}</div>
                  </div>
                  <br>
              </header>
